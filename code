@@ -6,53 +6,123 @@ namespace calculator
     {
         static void Main(string[] args)
         {
+
             Console.WriteLine("Welcome to the Calculator!");
-            Console.WriteLine("Choose an operation: +, -, *, /");
-            string operation = Console.ReadLine();
-
-            Console.WriteLine("Enter first number:");
-            double num1 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Enter second number:");
-            double num2 = Convert.ToDouble(Console.ReadLine());
-
-            double result = 0;
-
-            switch (operation)
+            while (true)
             {
-                case "+":
-                    Console.WriteLine("Performing addition...");
-                    result = addition.Add(num1, num2);
-                    Console.WriteLine($"Result: {result}");
-                    Console.WriteLine("Addition completed.");
-                    break;
-                case "-":
-                    Console.WriteLine("Performing subtraction...");
-                    result = Subtraction.Subtract(num1, num2);
-                    Console.WriteLine($"Result: {result}");
-                    Console.WriteLine("Subtraction completed.");
-                    break;
-                case "*":
-                    Console.WriteLine("Performing multiplication...");
-                    result = Multiplication.Multiply(num1, num2);
-                    Console.WriteLine($"Result: {result}");
-                    Console.WriteLine("Multiplication completed.");
-                    break;
-                case "/":
-                    Console.WriteLine("Performing division...");
-                    if (num2 != 0)
+                Console.WriteLine("Choose an operation: +, -, *, /, ^(potens), >(kvadratrod), %(procentregning)");
+                string operation = Console.ReadLine();
+                if (string.IsNullOrEmpty(operation))
+                {
+                    Console.WriteLine("No operation selected. Exiting.");
+                    return;
+                }
+                Console.WriteLine("Enter first number:");
+                double num1 = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Enter second number:");
+                double num2 = Convert.ToDouble(Console.ReadLine());
+
+                double result = 0;
+                do
+                {
+                    Console.WriteLine("You have entered: " + num1 + " and " + num2);
+                    Console.WriteLine("You have chosen the operation: " + operation);
+                    Console.WriteLine("Is this correct? (yes/no)");
+                    string confirmation = Console.ReadLine().ToLower();
+                    if (confirmation == "yes")
                     {
-                        result = Division.Divide(num1, num2);
-                        Console.WriteLine($"Result: {result}");
-                        Console.WriteLine("Division completed.");
+                        break;
                     }
                     else
                     {
-                        Console.WriteLine("Cannot divide by zero.");
+                        Console.WriteLine("Please re-enter the numbers and operation.");
+                        Console.WriteLine("Enter first number:");
+                        num1 = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Enter second number:");
+                        num2 = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Choose an operation: +, -, *, /, ^(potens), >(kvadratrod), %(procentregning)");
+                        operation = Console.ReadLine();
                     }
+                } while (true);
+                switch (operation)
+                {
+                    case "+":
+                        Console.WriteLine("Performing addition...");
+                        result = addition.Add(num1, num2);
+                        Console.WriteLine($"Result: {result}");
+                        Console.WriteLine("Addition completed.");
+                        break;
+                    case "-":
+                        Console.WriteLine("Performing subtraction...");
+                        result = Subtraction.Subtract(num1, num2);
+                        Console.WriteLine($"Result: {result}");
+                        Console.WriteLine("Subtraction completed.");
+                        break;
+                    case "*":
+                        Console.WriteLine("Performing multiplication...");
+                        result = Multiplication.Multiply(num1, num2);
+                        Console.WriteLine($"Result: {result}");
+                        Console.WriteLine("Multiplication completed.");
+                        break;
+                    case "/":
+                        Console.WriteLine("Performing division...");
+                        if (num2 != 0)
+                        {
+                            result = Division.Divide(num1, num2);
+                            Console.WriteLine($"Result: {result}");
+                            Console.WriteLine("Division completed.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Cannot divide by zero.");
+                        }
+                        break;
+                    case "^":
+                        Console.WriteLine("Performing exponentiation...");
+                        result = Potens.CalculatePower(num1, num2);
+                        Console.WriteLine($"Result: {result}");
+                        Console.WriteLine("Exponentiation completed.");
+                        break;
+                    case ">":
+                        Console.WriteLine("Calculating square root...");
+                        if (num1 >= 0)
+                        {
+                            result = kvadratrod.CalculateSquareRoot(num1);
+                            Console.WriteLine($"Result: {result}");
+                            Console.WriteLine("Square root calculation completed.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Cannot calculate square root of a negative number.");
+                        }
+                        break;
+                    case "%":
+                        Console.WriteLine("Calculating percentage...");
+                        if (num2 != 0)
+                        {
+                            result = procentregning.CalculatePercentage(num1, num2);
+                            Console.WriteLine($"Result: {result}");
+                            Console.WriteLine("Percentage calculation completed.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Cannot calculate percentage with a zero denominator.");
+                        }
+                        break;
+                    default:
+                        Console.WriteLine("Invalid operation.");
+                        return;
+
+                }
+
+                Console.WriteLine("Do you want to perform another calculation? (yes/no)");
+                string again = Console.ReadLine().ToLower();
+                if (again != "yes")
+                {
+                    Console.WriteLine("Thank you for using the calculator. Goodbye!");
                     break;
-                default:
-                    Console.WriteLine("Invalid operation.");
-                    return;
+                }
+
             }
         }
     }
