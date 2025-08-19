@@ -55,4 +55,38 @@ namespace Methods
         }
     }
 
+    public class kvadratrod
+    {
+        // This method takes a double and returns its square root.
+        // It is a simple example of a method that performs a calculation.
+        // The method is static, meaning it can be called without creating an instance of the class.
+        public static double CalculateSquareRoot(double x)
+        {
+            if (x < 0)
+                throw new ArgumentException("Cannot calculate square root of a negative number.");
+            return Math.Sqrt(x);
+        }
+    }
+    public class Potens
+    {
+        // This method takes two doubles and returns the result of raising the first to the power of the second.
+        // It is a simple example of a method that performs a calculation.
+        // The method is static, meaning it can be called without creating an instance of the class.
+        public static double CalculatePower(double x, double y)
+        {
+            return Math.Pow(x, y);
+        }
+    }
+    public class procentregning
+    {
+        // This method takes two doubles and returns the percentage of the first number relative to the second.
+        // It is a simple example of a method that performs a calculation.
+        // The method is static, meaning it can be called without creating an instance of the class.
+        public static double CalculatePercentage(double x, double y)
+        {
+            if (y == 0)
+                throw new DivideByZeroException("Cannot calculate percentage with zero as the base.");
+            return (x / y) * 100;
+        }
+    }
 }
