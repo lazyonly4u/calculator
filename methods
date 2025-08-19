@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+
+namespace Methods
+{
+    public class addition
+    {
+
+        // This method takes two integers and returns their sum.
+        // It is a simple example of a method that performs a calculation.
+        // The method is static, meaning it can be called without creating an instance of the class.}
+        public static double Add(double x, double y)
+        {
+            return x + y;
+        }
+    }
+
+    public class Subtraction
+    {
+        // This method takes two integers and returns their difference.
+        // It is a simple example of a method that performs a calculation.
+        // The method is static, meaning it can be called without creating an instance of the class.
+        public static double Subtract(double x, double y)
+        {
+            return x - y;
+        }
+    }
+
+    public class Multiplication
+    {
+        // This method takes two integers and returns their product.
+        // It is a simple example of a method that performs a calculation.
+        // The method is static, meaning it can be called without creating an instance of the class.
+        public static double Multiply(double x, double y)
+        {
+            return x * y;
+        }
+    }
+
+    public class Division
+    {
+        // This method takes two integers and returns their quotient.
+        // It is a simple example of a method that performs a calculation.
+        // The method is static, meaning it can be called without creating an instance of the class.
+        public static double Divide(double x, double y)
+        {
+            if (y == 0)
+                throw new DivideByZeroException("Cannot divide by zero.");
+            return (double)x / y;
+        }
+    }
+
+}
