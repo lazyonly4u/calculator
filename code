@@ -1,0 +1,59 @@
+using Methods;
+using System;
+namespace calculator
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Welcome to the Calculator!");
+            Console.WriteLine("Choose an operation: +, -, *, /");
+            string operation = Console.ReadLine();
+
+            Console.WriteLine("Enter first number:");
+            double num1 = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Enter second number:");
+            double num2 = Convert.ToDouble(Console.ReadLine());
+
+            double result = 0;
+
+            switch (operation)
+            {
+                case "+":
+                    Console.WriteLine("Performing addition...");
+                    result = addition.Add(num1, num2);
+                    Console.WriteLine($"Result: {result}");
+                    Console.WriteLine("Addition completed.");
+                    break;
+                case "-":
+                    Console.WriteLine("Performing subtraction...");
+                    result = Subtraction.Subtract(num1, num2);
+                    Console.WriteLine($"Result: {result}");
+                    Console.WriteLine("Subtraction completed.");
+                    break;
+                case "*":
+                    Console.WriteLine("Performing multiplication...");
+                    result = Multiplication.Multiply(num1, num2);
+                    Console.WriteLine($"Result: {result}");
+                    Console.WriteLine("Multiplication completed.");
+                    break;
+                case "/":
+                    Console.WriteLine("Performing division...");
+                    if (num2 != 0)
+                    {
+                        result = Division.Divide(num1, num2);
+                        Console.WriteLine($"Result: {result}");
+                        Console.WriteLine("Division completed.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Cannot divide by zero.");
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Invalid operation.");
+                    return;
+            }
+        }
+    }
+}
